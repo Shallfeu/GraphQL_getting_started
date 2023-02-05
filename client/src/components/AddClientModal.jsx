@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { useMutation } from '@apollo/client';
-import { ADD_CLIENT } from '../mutations/clientMutations';
 import { GET_CLIENTS } from '../queries/clientQuery';
+import { ADD_CLIENT } from '../mutations/clientMutations';
 
 export default function AddClientModal() {
   const [name, setName] = useState('');
@@ -45,7 +45,7 @@ export default function AddClientModal() {
       >
         <div className="d-flex align-items-center">
           <FaUser />
-          <div>Add Client</div>
+          <div className="m-2">Add Client</div>
         </div>
       </button>
 
@@ -70,7 +70,7 @@ export default function AddClientModal() {
             </div>
 
             <div className="modal-body">
-              <form onSubmit={onSubmit} action="">
+              <form onSubmit={onSubmit} action="" className="d-flex flex-column">
                 <div className="mb-3">
                   <label htmlFor="form-label">Name</label>
                   <input
@@ -104,7 +104,11 @@ export default function AddClientModal() {
                   />
                 </div>
 
-                <button type="submit" data-bs-dismiss="modal" className="btn btn-secondary">
+                <button
+                  type="submit"
+                  data-bs-dismiss="modal"
+                  className="align-self-center btn btn-secondary"
+                >
                   Submit
                 </button>
               </form>

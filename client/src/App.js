@@ -1,11 +1,16 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 // Components
 import TheHeader from './components/TheHeader';
-import Clients from './components/Clients';
-// Utils
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-import AddClientModal from './components/AddClientModal';
-import Projects from './components/Projects';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import Project from './pages/Project';
+
+export const statusEnum = {
+  new: 'Not Started',
+  progress: 'In Progress',
+  completed: 'Completed',
+};
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -37,9 +42,11 @@ function App() {
       <Router>
         <TheHeader />
         <div className="container">
-          <AddClientModal />
-          <Projects />
-          <Clients />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/projects/:id" element={<Project />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+          </Routes>
         </div>
       </Router>
     </ApolloProvider>
